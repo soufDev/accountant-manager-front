@@ -1,0 +1,74 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "gdr-front"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.less"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/admin-lte/dist/js/app.js",
+        "../node_modules/admin-lte/plugins/morris/morris.js",
+        "../node_modules/admin-lte/plugins/sparkline/jquery.sparkline.js",
+        "../node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js",
+        "../node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
+        "../node_modules/admin-lte/plugins/knob/jquery.knob.js",
+        "../node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js",
+        "../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js",
+        "../node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
+        "../node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js",
+        "../node_modules/admin-lte/plugins/fastclick/fastclick.js",
+        "../node_modules/admin-lte/dist/js/pages/dashboard.js",
+        "../node_modules/admin-lte/dist/js/demo.js",
+        "../node_modules/moment/moment.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

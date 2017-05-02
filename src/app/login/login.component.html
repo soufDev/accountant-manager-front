@@ -1,0 +1,44 @@
+<div id="loader" *ngIf="loading !== true"></div>
+<div class="login-box" *ngIf="loading === true">
+  <div class="login-logo">
+    <a [routerLink]="['/']"><b>GCL</b>Rubicom</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Connectez-Vous</p>
+
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
+        <span class="glyphicon glyphicon-envelope form-control-feedback help-block" ></span>
+        <div class="help-block" *ngIf="f.submitted && !email.valid">veuillez saisir votre email</div>
+      </div>
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !password.valid}">
+        <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+        <span class="glyphicon glyphicon-lock form-control-feedback help-block"></span>
+        <div class="help-block" *ngIf="f.submitted && !password.valid">veuillez saisir votre mot de passe</div>
+      </div>
+      <div class="row">
+
+        <!-- /.col -->
+        <div class="col-xs-5  pull-right">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Connexion</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <a href="#" class="text-center">Mot de passe oublié ?</a>
+    <div class="social-auth-links text-center">
+      <p>- OU -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Se Connecter avec Facebook</a>
+    </div>
+    <!-- /.social-auth-links -->
+
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+

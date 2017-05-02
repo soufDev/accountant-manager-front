@@ -4,29 +4,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { MessageBoxComponent } from './header/message-box/message-box.component';
-import { NotificationBoxComponent } from './header/notification-box/notification-box.component';
-import { UserBoxComponent } from './header/user-box/user-box.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { ContentComponent } from './content/content.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from './guards/auth/auth.guard';
+import {AuthService} from './services/auth.services';
+import { RegisterComponent } from './register/register.component';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    MessageBoxComponent,
-    NotificationBoxComponent,
-    UserBoxComponent,
-    SideBarComponent,
-    ContentComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

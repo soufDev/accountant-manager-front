@@ -7,7 +7,7 @@ describe('gdr-front App', () => {
     page = new GdrFrontPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display error saying app works', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('app works!');
   });

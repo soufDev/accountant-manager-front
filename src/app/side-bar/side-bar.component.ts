@@ -8,11 +8,21 @@ import {AuthService} from '../services/auth.services';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
-  user: User;
+  user: User = new User();
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.user = this.authService.user;
+    this.getUser();
+    console.log(this.user)
+  }
+
+  getUser(): void {
+    this.authService
+      .getUserAuth()
+      .then(user => {
+        console.log("user : "+user);
+        this.user = user
+      });
   }
 
 }

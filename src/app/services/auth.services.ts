@@ -5,6 +5,20 @@ import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+// Observable class extensions
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
+// Observable operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+
+import {Router} from '@angular/router';
 import {User} from '../models/user';
 
 const url = 'http://localhost:8000/auth/';
@@ -13,44 +27,46 @@ const url = 'http://localhost:8000/auth/';
 export class AuthService {
   public token: string;
   public user;
-  loggedIn: boolean;
-
   // store the url so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private http: Http) {
+  private headers = new Headers({
+    'Authorization': 'JWT ' + this.token,
+    'Content-Type': 'application/json'
+  });
+  private header = new Headers({
+    'Authorization': 'Token ' + this.token,
+  });
+
+
+  constructor(private http: Http, private router: Router) {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
-    this.user = currentUser && currentUser.user;
-  }
-
-  isLoggedIn() {
-    return this.loggedIn;
-  }
-
-  setLoggedIn(value: boolean) {
-    this.loggedIn = value;
+    this.getUserAuth().then(user => {
+      console.log("user : "+user);
+      this.user = user
+    });
   }
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.post(url + 'login/', {email: email, password: password})
       .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        let token = response.json() && response.json().auth_token;
-        // getUser is get request to the backend
-        this.getUser(token).then((value: any) =>{
-          this.user = value;
-        });
-        console.log("token = " + token);
-        if (token && this.user) {
-          this.token = token;
-          localStorage.setItem('currentUser', JSON.stringify({user: this.user, token: token}));
+      // login successful if there's a jwt token in the response
+        let token = response.json().token;
+
+
+        if (token) {
+          let temp_user;
+          this.getUserAuth().then(
+            user => temp_user = user
+          );
+          localStorage.setItem('currentUser', JSON.stringify({user: temp_user, token: token}));
           return true;
         }
         return false;
       });
   }
-
+  /* a revoir au cas ou
   getUser(token) {
     let headers = new Headers({
         'Authorization': 'Token ' + token,
@@ -68,25 +84,73 @@ export class AuthService {
         });
     });
   }
+  */
 
-  logout(): void {
+
+
+  private extraDataLogout(res : Response) {
+    return res.status;
+  }
+  get_user(token) {
+    let headers = new Headers({
+        'Authorization': 'JWT ' + token,
+        'Content-Type': 'application/json'
+      }
+    );
+    let options = new RequestOptions({headers: headers});
+    return this.http.get(url+'me/', options)
+      .map(this.extractData)
+      //.catch(this.handelError);
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || { }
+  }
+
+  private handelError(error: Response| any) {
+    let errMsg: string;
+    if(error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error.json() || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString()
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
+  getUserAuth(): Promise<User> {
+    let headers = new Headers({
+        'Authorization': 'JWT ' + this.token,
+      }
+    );
+    let options = new RequestOptions({headers: headers});
+    return this.http.get(url+'me/', options)
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(this.handleError)
+  }
+
+  logout(): Promise<any> {
     // clear token remove user from local storage to log user out
-    this.token = null;
-    //this.setLoggedIn(false);
-    this.http.post(url + 'logout/', {})
-      .map((response: Response) => {
-        console.log('reponse logout : ' + response);
-      });
-    localStorage.removeItem('currentUser');
-    //this.getUser(url+'me/', this.token);
+    let headers = new Headers({
+        'Authorization': 'JWT ' + this.token,
+      }
+    );
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(url + 'logout/', options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 
 
-  getAuthToken(email: string, password: string): any {
-    return this.http.post(url+'login/', {email: email, password: password})
-      .map((response: Response) => {
-        JSON.parse(response.json());
-      })
 
-  }
 }

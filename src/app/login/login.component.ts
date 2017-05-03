@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService.login(this.model.email, this.model.password)
       .subscribe(result => {
+        console.log('result '+result);
         if (result === true){
           let redirect = this.authenticationService.redirectUrl ? this.authenticationService.redirectUrl : '/admin';
 
@@ -41,19 +42,16 @@ export class LoginComponent implements OnInit {
             preserveQueryParams: true,
             preserveFragment: true
           };
-          this.error = 'Email ou/et Mot de passe ' + (this.authenticationService.isLoggedIn() ? ' Correct': ' Incorrect');
+          //this.error = 'Email ou/et Mot de passe ' + (this.authenticationService.isLoggedIn() ? ' Correct': ' Incorrect');
           // redirect to the dashboard
           this.router.navigate([redirect]);
         } else {
           // login failed
-          this.error = 'Email ou/et Mot de passe ' + (this.authenticationService.isLoggedIn() ? ' Correct': ' Incorrect');
+          this.error = 'Email ou/et Mot de passe Incorrect';
         }
       });
 
   }
 
-  getUser() {
-    return this.model;
-  }
 
 }

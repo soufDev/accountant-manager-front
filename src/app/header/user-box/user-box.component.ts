@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {AuthService} from '../../services/auth.services';
-import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   /* tslint:disable */
   selector: '.user-box',
   /* tslint:disable */
   templateUrl: './user-box.component.html',
-  styleUrls: ['./user-box.component.css'],
+  styleUrls: ['./user-box.component.css']
 })
 export class UserBoxComponent implements OnInit {
-  public user;
-  constructor(private userService: UserService, private authService: AuthService) { }
+  user: User = new User();
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.user = localStorage.getItem('currentUser');
-    console.log('this.user '+this.user);
+    this.getUser();
+    console.log(this.user)
   }
 
-  logout() {
-    this.authService.logout();
+  getUser(): void {
+    this.authService
+      .getUserAuth()
+      .then(user => this.user = user);
   }
+
+  logout(): void {
+    localStorage.removeItem('currentUser');
+  }
+
 
 }

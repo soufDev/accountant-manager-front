@@ -1,12 +1,30 @@
-<div class="register-box">
+<div id="loader" *ngIf="!loading"></div>
+<div class="register-box" *ngIf="loading">
+
   <div class="register-logo">
     <a [routerLink]="['/']"><b>GCL</b>Rubicom</a>
   </div>
 
-  <div class="register-box-body">
-    <p class="login-box-msg">S'enregister comme Candidat</p>
+  <div class="box box-solid box-success" *ngIf="registerSuccess">
+    <div class="box-header">
+      <h3 class="box-title">Operation Reussi</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      <h4>
+        Veuillez bien verifier votre boite email pour active votre compte et entrez toutes vos informations
+      </h4>
+    </div><!-- /.box-body -->
+  </div>
 
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+  <div class="register-box-body" *ngIf="!registerSuccess">
+    <h4 class="login-box-msg">S'enregister comme Candidat</h4>
+
+    <div class="alert alert-danger" role="alert" *ngIf="registerError" >
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      Il y'a un probleme veuillez verfier les données que vous avez saisies
+    </div>
+    <form name="form" (ngSubmit)="f.form.valid && registerAccount()" #f="ngForm" novalidate>
       <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !last_name.valid }">
         <input type="text" class="form-control" placeholder="Nom" name="last_name" [(ngModel)]="user.last_name" #last_name="ngModel" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -18,9 +36,9 @@
         <div class="help-block" *ngIf="f.submitted && !first_name.valid">veuillez saisir votre Prénom</div>
       </div>
       <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
+        <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" #email="ngModel" required email>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        <div class="help-block" *ngIf="f.submitted && !email.valid">veuillez saisir votre Email</div>
+        <div class="help-block" *ngIf="f.submitted && !email.valid">veuillez saisir votre Email Exemple: <i>john@doe.com</i></div>
       </div>
       <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
         <input type="password" class="form-control" placeholder="Mot de passe" name="password" [(ngModel)]="user.password" #password="ngModel" minlength="8" required>
@@ -32,24 +50,81 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
         <div class="help-block" *ngIf="f.submitted && !confirm_password.valid">Veuillez saisir le meme mot de passe de confirmation</div>
       </div>
-      <div class="alert alert-danger" role="alert" *ngIf="validationEqualPassword" >
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !birth_date.valid}">
+        <input type="date" class="form-control" placeholder="Date de Naissance" name="birth_date" [(ngModel)]="user.birth_date" #birth_date="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !birth_date.valid">Veuillez saisir votre date de naissance</div>
+      </div>
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !city_birth.valid}">
+        <input type="text" class="form-control" placeholder="Ville de Naissance" name="city_birth" [(ngModel)]="user.city_birth" #city_birth="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !city_birth.valid">Veuillez saisir votre ville de naissance</div>
+      </div>
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !department_birth.valid}">
+        <input type="text" class="form-control" placeholder="Departement de naissance" name="department_birth" [(ngModel)]="user.department_birth" #department_birth="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !department_birth.valid">Veuillez saisir le departement</div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !country_birth.valid}">
+        <input type="text" class="form-control" placeholder="Pays de Naissance" name="country_birth" [(ngModel)]="user.country_birth" #country_birth="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !country_birth.valid">Veuillez saisir le pays</div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !address.valid}">
+        <input type="text" class="form-control" placeholder="Adresse de domiciliation" name="address" [(ngModel)]="user.address" #address="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !address.valid">Veuillez entrez l'adresse du lieu de naissance</div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !additional_address.valid}">
+        <input type="text" class="form-control" placeholder="Adresse de domiciliation 2" name="additional_address" [(ngModel)]="user.additional_address" #additional_address="ngModel">
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !zip_code.valid}">
+        <input type="number" class="form-control" placeholder="Code Postale domiciliation" name="zip_code" [(ngModel)]="user.zip_code" #zip_code="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !zip_code.valid">Veuillez entrez votre code postale domiciliation</div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !city_address.valid}">
+        <input type="text" class="form-control" placeholder="Ville de domiciliation" name="city_address" [(ngModel)]="user.city_address" #city_address="ngModel" required>
+        <div class="help-block" *ngIf="f.submitted && !city_address.valid">Veuillez entrez votre ville de domiciliation</div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !contract.valid}">
+        <label>
+          <input type="checkbox" name="contract" [(ngModel)]="user.contract" #contract="ngModel" required>
+          J'ai lu et j'accepte les <a href="#/register" (click)="getPdfURL()">termes</a> du contrat
+        </label>
+        <div class="help-block" *ngIf="f.submitted && !contract.valid">Veuillez lire et acceptez les termes du contrat</div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="!validationEqualPassword" >
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
         Veuillez saisir le meme mot de passe de confirmation
       </div>
+      <div class="alert alert-danger" role="alert" *ngIf="!registerBackend" >
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Veuillez resaisir votre email et mot de passe
+      </div>
 
       <div class="row ">
         <div class="col-xs-5 pull-right">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">S'enregister</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat" >S'enregister</button>
         </div>
       </div>
+
     </form>
 
     <div class="social-auth-links text-center">
+      <!--
       <p>- OU -</p>
+
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> S'enregister Avec Facebook</a>
+      -->
     </div>
 
     <a [routerLink]="['/']" class="text-center">je suis dejà enregistré</a>
   </div>
 </div>
+
+
+

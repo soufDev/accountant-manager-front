@@ -1,7 +1,8 @@
 
 import {Injectable} from '@angular/core';
-import {Headers, Http, RequestOptions, Response} from '@angular/http';
+import {Headers, Http, RequestOptions, Response, ResponseContentType} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {saveAs} from 'file-saver';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -20,6 +21,7 @@ import 'rxjs/add/operator/switchMap';
 
 import {Router} from '@angular/router';
 import {User} from '../models/user';
+import {environment} from '../environments/environments';
 
 const url = 'http://localhost:8000/auth/';
 
@@ -35,70 +37,38 @@ export class AuthService {
     'Content-Type': 'application/json'
   });
   private header = new Headers({
-    'Authorization': 'Token ' + this.token,
-  });
+      'Authorization': 'JWT ' + this.token,
+    }
+  );
 
 
   constructor(private http: Http, private router: Router) {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
-    this.getUserAuth().then(user => {
-      console.log("user : "+user);
-      this.user = user
-    });
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post(url + 'login/', {email: email, password: password})
+    return this.http.post(environment.api_url + 'auth/login/', {email: email, password: password})
       .map((response: Response) => {
       // login successful if there's a jwt token in the response
         let token = response.json().token;
 
 
         if (token) {
-          let temp_user;
-          this.getUserAuth().then(
-            user => temp_user = user
-          );
-          localStorage.setItem('currentUser', JSON.stringify({user: temp_user, token: token}));
+          localStorage.setItem('currentUser', JSON.stringify({token: token}));
           return true;
         }
         return false;
-      });
+      }).catch(this.handelError);
   }
-  /* a revoir au cas ou
-  getUser(token) {
-    let headers = new Headers({
-        'Authorization': 'Token ' + token,
-        'Content-Type': 'application/json'
-      }
-    );
-    let options = new RequestOptions({headers: headers});
-    let user;
-    // get users from api
-    return new Promise((resolve: any, reject: any) => {
-      this.http.get(url+'me/', options)
-        .toPromise()
-        .then((response: Response) => {
-          resolve(response.json());
-        });
-    });
-  }
-  */
-
-
 
   private extraDataLogout(res : Response) {
     return res.status;
   }
   get_user(token) {
-    let headers = new Headers({
-        'Authorization': 'JWT ' + token,
-        'Content-Type': 'application/json'
-      }
-    );
-    let options = new RequestOptions({headers: headers});
-    return this.http.get(url+'me/', options)
+
+    let options = new RequestOptions({headers: this.headers});
+    return this.http.get(environment.api_url+'auth/me/', options)
       .map(this.extractData)
       //.catch(this.handelError);
   }
@@ -122,28 +92,17 @@ export class AuthService {
   }
 
   getUserAuth(): Promise<User> {
-    let headers = new Headers({
-        'Authorization': 'JWT ' + this.token,
-      }
-    );
-    let options = new RequestOptions({headers: headers});
-    return this.http.get(url+'me/', options)
+    this.header.set('Authorization', 'JWT '+this.token);
+    let options = new RequestOptions({headers: this.header});
+    return this.http.get(environment.api_url+'auth/me/', options)
       .toPromise()
       .then(response => response.json() as User)
       .catch(this.handleError)
   }
 
-  logout(): Promise<any> {
+  logout() {
     // clear token remove user from local storage to log user out
-    let headers = new Headers({
-        'Authorization': 'JWT ' + this.token,
-      }
-    );
-    let options = new RequestOptions({headers: headers});
-    return this.http.post(url + 'logout/', options)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+    localStorage.removeItem('currentUser')
   }
 
   private handleError(error: any): Promise<any> {
@@ -151,6 +110,57 @@ export class AuthService {
     return Promise.reject(error.message || error);
   }
 
+  // register new candidat
+  register(data): Observable<any> {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(environment.api_url+'auth/register/', data, options)
+      .map(this.extractData)
+      .catch(this.handelError);
+  }
 
+  pdfURL(): Observable<any> {
+    let options = new RequestOptions({});
+    return this.http.get(environment.api_url+'contract/', options)
+      .map(this.extractData)
+      .catch(this.handelError)
+  }
+
+  downloadPDF(): Observable<any> {
+
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+       //'Accept': 'application/pdf'
+    });
+
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get('http://localhost:8000/media/files/contrat.pdf', {responseType: ResponseContentType.Blob})
+      .map( (response) => {
+          return new Blob([response.blob()], {type: 'application/pdf'})
+
+        }
+      )
+      .catch(this.handelError)
+  }
+
+  downloadFile(url) {
+    this.http.get(url).subscribe(
+      (response: Response) => {
+        let mediaType = 'application/pdf';
+        let blob = new Blob([response], {type: mediaType});
+        let filename = 'contrat.pdf';
+        saveAs(blob, filename);
+      });
+  }
+
+  regidterCandidate(data): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(environment.api_url+'users/candidates/', data, options)
+      .map(this.extractData)
+      .catch(this.handelError)
+  }
 
 }

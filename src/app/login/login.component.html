@@ -19,6 +19,7 @@
         <span class="glyphicon glyphicon-lock form-control-feedback help-block"></span>
         <div class="help-block" *ngIf="f.submitted && !password.valid">veuillez saisir votre mot de passe</div>
       </div>
+
       <div class="row">
 
         <!-- /.col -->
@@ -30,12 +31,15 @@
     </form>
 
     <a href="#" class="text-center">Mot de passe oublié ?</a>
+
     <div class="social-auth-links text-center">
       <p>- OU -</p>
+      <!--
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Se Connecter avec Facebook</a>
+      -->
     </div>
-    <!-- /.social-auth-links -->
-
+    <!--.social-auth-links -->
+    <a class="text-center" [routerLink]="['/register']">S'enregister en tant que Candidat</a>
 
   </div>
   <!-- /.login-box-body -->

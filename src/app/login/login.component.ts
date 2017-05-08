@@ -30,26 +30,27 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.error = "Tentative d'authentification";
+    //this.error = "Tentative d'authentification";
 
     this.authenticationService.login(this.model.email, this.model.password)
       .subscribe(result => {
         console.log('result '+result);
-        if (result === true){
-          let redirect = this.authenticationService.redirectUrl ? this.authenticationService.redirectUrl : '/admin';
+        let redirect = this.authenticationService.redirectUrl ? this.authenticationService.redirectUrl : '/admin';
 
-          let navigationExtras: NavigationExtras = {
-            preserveQueryParams: true,
-            preserveFragment: true
-          };
-          //this.error = 'Email ou/et Mot de passe ' + (this.authenticationService.isLoggedIn() ? ' Correct': ' Incorrect');
-          // redirect to the dashboard
-          this.router.navigate([redirect]);
-        } else {
+        let navigationExtras: NavigationExtras = {
+          preserveQueryParams: true,
+          preserveFragment: true
+        };
+        //this.error = 'Email ou/et Mot de passe ' + (this.authenticationService.isLoggedIn() ? ' Correct': ' Incorrect');
+        // redirect to the dashboard
+        this.router.navigate([redirect]);
+
+      },
+        error => {
           // login failed
           this.error = 'Email ou/et Mot de passe Incorrect';
         }
-      });
+      );
 
   }
 

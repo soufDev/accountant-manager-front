@@ -1,0 +1,29 @@
+
+<div class="register-box">
+  <div class="register-logo">
+    <a [routerLink]="['/']"><b>GCL</b>Rubicom</a>
+  </div>
+  <div class="row">
+    <div class="box box-solid box-success" *ngIf="activateSucess">
+      <div class="box-header">
+        <h3 class="box-title">Operation Reussi</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <h4>
+          {{ message }}
+        </h4>
+      </div><!-- /.box-body -->
+    </div>
+    <div class="box box-solid box-warning" *ngIf="activateError">
+      <div class="box-header">
+        <h1 class="box-title">Attention Operation Interrompu</h1>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <h4>
+          {{ message }}
+        </h4>
+      </div><!-- /.box-body -->
+    </div>
+  </div>
+
+</div>

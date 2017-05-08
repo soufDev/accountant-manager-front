@@ -5,13 +5,18 @@ import {SelectivePreloadingStrategy} from './selective-preloading-strategy';
 import {NgModule} from '@angular/core';
 import {CanDeactivateGuard} from './guards/auth/can-deactivate-guard.service';
 import {RegisterComponent} from './register/register.component';
+import {ActivateComponent} from './activate/activate.component';
+import {AuthService} from './services/auth.services';
 
 const appRoutes: Routes = [
 
   {
     path: '',
     loadChildren: 'app/login/login.module#LoginModule',
-    //canLoad: [LoginGuard]
+  },
+  {
+    path: 'activate/:id/:token',
+    component: ActivateComponent,
   },
   {
     path: 'register',
@@ -34,7 +39,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      {preloadingStrategy: SelectivePreloadingStrategy}
+      { useHash: true },
     )
   ],
   exports: [
@@ -42,7 +47,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     CanDeactivateGuard,
-    SelectivePreloadingStrategy
+    SelectivePreloadingStrategy,
+    AuthService
   ]
 })
 export class AppRoutingModule { }

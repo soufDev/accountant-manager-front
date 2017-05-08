@@ -4,6 +4,7 @@ import {LoginRoutingModule} from './login-routing.module';
 import {LoginComponent} from './login.component';
 import {FormsModule} from '@angular/forms';
 import {RegisterComponent} from '../register/register.component';
+import { ActivateComponent } from '../activate/activate.component';
 
 @NgModule({
   imports: [

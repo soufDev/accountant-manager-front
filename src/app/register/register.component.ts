@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
             'city_address': this.user.city_birth
           };
           console.log(candidate);
-          this.authService.regidterCandidate(candidate).subscribe(
+          this.authService.registerCandidate(candidate).subscribe(
             (response) => {
               this.registerBackend = true;
               this.registerSuccess = true;
@@ -116,10 +116,9 @@ export class RegisterComponent implements OnInit {
             let blob = response;
             let fileName = 'contrat.pdf';
             saveAs(blob, fileName);
-          }
-        ),
-          error => console.log(error)
-
+          },
+            error => console.log(error)
+        )
       },
       error => {
             console.log(error);
@@ -150,7 +149,7 @@ export class RegisterComponent implements OnInit {
         'zip_code': this.user.zip_code,
         'city_address': this.user.city_birth
       };
-      this.authService.regidterCandidate(candidate).subscribe(
+      this.authService.registerCandidate(candidate).subscribe(
         result => {
           this.registerBackend = true;
           this.registerSuccess = true;

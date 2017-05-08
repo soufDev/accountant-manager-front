@@ -90,7 +90,7 @@
       <div class="form-group has-feedback" [ngClass]="{ 'has-error': f.submitted && !contract.valid}">
         <label>
           <input type="checkbox" name="contract" [(ngModel)]="user.contract" #contract="ngModel" required>
-          J'ai lu et j'accepte les <a href="#/register" (click)="getPdfURL()">termes</a> du contrat
+          J'ai lu et j'accepte les <a style="cursor: pointer" (click)="getPdfURL()">termes</a> du contrat
         </label>
         <div class="help-block" *ngIf="f.submitted && !contract.valid">Veuillez lire et acceptez les termes du contrat</div>
       </div>

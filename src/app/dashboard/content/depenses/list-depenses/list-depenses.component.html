@@ -1,2 +1,104 @@
-<h1>les des depenses</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3></h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="mailbox-controls">
+          <!-- Check all button -->
+          <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+          </button>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+          </div>
+          <!-- /.btn-group -->
+          <button type="button" class="btn btn-default btn-sm btn-refresh "><i class="fa fa-refresh"></i></button>
+          <!-- /.pull-right -->
+          <div class="btn-group">
+            <a href='<?php echo PATH ?>/pages/depenses/ajouter-depense.php' class="btn btn-block btn-primary" id="btn-new_depense" >Ajouter une dépense</a>
+          </div>
+        </div>
+        <div class="table-responsive mailbox-messages">
+          <table class="table table-bordered table-striped" id="table_liste-depenses" >
+            <thead>
+            <tr>
+              <th class="no-sort" ></th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Montant</th>
+              <th>Statut</th>
+              <th>Observations</th>
+              <th class="no-sort" >Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td class="date">07/04/2017</td>
+              <td class="orgin">Événement</td>
+              <td class="nature">Location de salle</td>
+              <td class="montant">500,00</td>
+              <td>Budgétée</td>
+              <td class="td-flag"><i class="fa fa-flag" aria-hidden="true"></i></td>
+              <td>
+                <a href="voir-depense.php?ID=1" title="Voir détails depense" class="link-eye" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="edit-depense.php?ID=1" title="Modifier depense"  ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="?ID=&action=delete" title="Supprimer depense"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td class="date">07/04/2017</td>
+              <td class="orgin">Sondage</td>
+              <td class="nature">L'INTENTION DE VOTE AU PREMIER TOUR</td>
+              <td class="montant">250,00</td>
+              <td>Engagée</td>
+              <td></td>
+              <td>
+                <a href="voir-depense.php?nature=7021" title="Voir détails depense" class="link-eye" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="edit-depense.php?ID=" title="Modifier depense" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="?ID=&action=delete" title="Supprimer depense"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td class="date">08/04/2017</td>
+              <td class="orgin">Tracts</td>
+              <td class="nature">Document imprimé, hors campagne officielle</td>
+              <td class="montant">2500,00</td>
+              <td>Payée</td>
+              <td></td>
+              <td>
+                <a href="voir-depense.php?nature=7022" title="Voir détails depense" class="link-eye" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <a href="edit-depense.php?ID=" title="Modifier depense" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="?ID=&action=delete" title="Supprimer depense"><i class="fa fa-trash" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <!-- /.table -->
+        </div>
+        <!-- /.mail-box-messages -->
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer no-padding">
+        <div class="mailbox-controls">
+          <!-- Check all button -->
+          <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+          </button>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+          </div>
+          <!-- /.btn-group -->
+          <button type="button" class="btn btn-default btn-sm btn-refresh"><i class="fa fa-refresh"></i></button>
 
+          <!-- /.pull-right -->
+        </div>
+      </div>
+    </div>
+    <!-- /. box -->
+  </div>
+</div>

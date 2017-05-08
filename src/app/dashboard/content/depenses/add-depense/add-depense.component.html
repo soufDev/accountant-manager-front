@@ -1,1 +1,470 @@
-<h1>Ajouter une depenses</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3>Formulaire</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body" >
+
+        <form action="" method="POST" id="ajouter-depense" enctype="multipart/form-data"  >
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <p class="msg-error"  ></p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <!-- Type -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="type">Type</label>
+            <div class="col-sm-10">
+              <select  id="depense-type" class="form-control" >
+                <option value="">Sélectionnez un type</option>
+                <option value="1" data-niveau="2">Événement</option>
+                <option value="2" data-niveau="2" >Document imprimé, hors campagne officielle</option>
+                <option value="3" data-niveau="2">Sondage</option>
+                <option value="4" data-niveau="2">Frais généraux de la campagne</option>
+                <option value="5" data-niveau="2" >Site web de la campagne</option>
+                <option value="6" data-niveau="2" >Vidéo</option>
+                <option value="7" data-niveau="2" >Goodis</option>
+                <option value="8" data-niveau="2" >Message téléphonique</option>
+                <option value="9" data-niveau="2" >Déplacement</option>
+                <option value="10" data-donnees="6229" >Honoraires expert comptable</option>
+                <option value="6280-1">Frais divers</option>
+                <option value="12" data-niveau="2" >Frais financiers</option>
+                <option value="6789">Menus dépenses payées par le candidat</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <!-- Type choix niveau 2 -->
+          <div class="form-group">
+
+            <div id="div_type-1_niv-2" class="type_niv_2 type_niv" >
+              <label for="type_1" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10" >
+                <select  id="type_1" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6254-1">Location de la salle</option>
+                  <option value="6257">Frais de réception</option>
+                  <option value="6254-2">Décoration et sonorisation/matériels audiovisuels</option>
+                  <option value="NA-1">Annonce et communication de l'événement</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-2_niv-2" class="type_niv_2 type_niv" >
+              <label for="type_2" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_2" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6237-1">Conception du document</option>
+                  <option value="6237-2">Impression du document</option>
+                  <option value="6260-1">Distribution ou envoi du document</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-3_niv-2" class="type_niv-2 type_niv" >
+              <label for="type_3" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_3" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="3-1" data-niveau="3">De notoriété ou de prévision de résultats</option>
+                  <option value="6235-2">Concernant les thématiques de campagne</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-4_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_4" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="4-1" data-niveau="3" >Salariés</option>
+                  <option value="4-2" data-niveau="3" >Matériels</option>
+                  <option value="6060">Consommables de bureaux, journaux locaux</option>
+                  <option value="6132">Permanence électorale</option>
+                  <option value="6260-2">Frais postaux</option>
+                  <option value="6262-1">Lignes téléphoniques</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-5_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_5" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6230-1">Conception du site web</option>
+                  <option value="6230-2">Hébergement du site web</option>
+                  <option value="6226-1">Élaboration du contenu</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-6_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_6" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6230-3">Création de la vidéo</option>
+                  <option value="6230-4">Diffusion de la vidéo</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-7_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_7" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6226-2">Création des Goodies</option>
+                  <option value="6280-2">Fabrication des Goodies</option>
+                  <option value="6280-3">Goodies données par un parti politique</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-8_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_8" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6226-3">Création du message</option>
+                  <option value="8-2" data-niveau="3">Diffusion du message</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-9_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_9" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6240-1">Du candidat ou suppléant ou du mandataire financier </option>
+                  <option value="6240-2">Des militants</option>
+                  <option value="6240-3">Des salariés de la campagne</option>
+                  <option value="6240-NA">Une personnalité venue soutenir le candidat</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-12_niv-2" class="type_niv_2 type_niv" >
+              <label for="sous-type" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="type_12" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6600">Payés par le mandataire</option>
+                  <option value="6613">Payés directement par le candidat</option>
+
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+
+          </div>
+
+          <!-- Type choix niveau 3 -->
+          <div class="form-group">
+
+            <div id="div_type-3-1_niv-3" class="type_niv_3 type_niv" >
+              <label for="div_type_3-1" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10" >
+                <select  id="div_type_3-1" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6235">Publié par l'équipe de campagne dans un document à caractère électoral</option>
+                  <option value="6235-NA">Non-publié</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-4-1_niv-3" class="type_niv_3 type_niv" >
+              <label for="div_type_4-1" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="div_type_4-1" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6211">Mise à disposition par parti sans interruption de contact</option>
+                  <option value="6210">Intérimaires</option>
+                  <option value="6400">Salariés de la campagne</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-4-2_niv-3" class="type_niv_3 type_niv" >
+              <label for="div_type_4-2" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="div_type_4-2" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6135-1">Location</option>
+                  <option value="6051">Achats</option>
+                  <option value="6135-2">Mise à disposition gratuite</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+            <div id="div_type-8-2_niv-3" class="type_niv_3 type_niv" >
+              <label for="div_type_8-2" class="col-sm-2 control-label" ></label>
+              <div class="col-sm-10">
+                <select  id="div_type_8-2" class="form-control" >
+                  <option value="">Sélectionnez un sous type</option>
+                  <option value="6262-2">Frais télécoms</option>
+                  <option value="6226-4">Frais main d’œuvres</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+
+          </div>
+
+          <input type="hidden" name="type" value="" id="type"  />
+
+          <!-- Données depense -->
+          <div class="form-group">
+
+            <!-- Data Don / Personne physique -->
+            <div id="data-depense" class="data-depense" >
+
+              <div class="form-row" >
+                <label class="col-sm-2 control-label" for="nom-donateur">Orgine</label>
+                <div class="col-sm-10">
+                  <input type="text" id="orgine" value="" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-row" >
+                <label class="col-sm-2 control-label" for="statut-depense">Statut</label>
+                <div class="col-sm-10">
+                  <select id="statut-depense" data-name="statut-depense" class="form-control">
+                    <option value=""></option>
+                    <option value="Budgétée">Budgétée</option>
+                    <option value="Engagée">Engagée</option>
+                    <option value="Payée">Payée</option>
+                  </select>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-row" >
+                <label class="col-sm-2 control-label" for="date">Date</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control pull-right datepicker" id="date" type="text"  />
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-row" >
+                <label class="col-sm-2 control-label" for="moyen-paiement">Moyen de paiement</label>
+                <div class="col-sm-10">
+                  <select id="moyen-paiement" data-name="moyen-paiement" class="form-control">
+                    <option value=""></option>
+                    <option value="ESP">ESP</option>
+                    <option value="CHQ">CHQ</option>
+                    <option value="VI">VI</option>
+                    <option value="PRLV">PRLV</option>
+                    <option value="CB">CB</option>
+                  </select>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-row" >
+                <label class="col-sm-2 control-label" for="montant-don">Montant</label>
+                <div class="col-sm-10">
+                  <input type="text" id="montant-don" value="" class="form-control" />
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <!-- Justifications -->
+            <div id="data-justifs" class="justifs-depense" >
+              <div class="form-row" >
+                <h4>Justifications</h4>
+              </div>
+              <div class="form-row" >
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-10">
+
+                  <input type="file" name="justif-depense[]" multiple class="file-loading" id="justif-depense[]" value="Parcourir" />
+
+                  <div class="clearfix"></div>
+
+                  <!-- Justifications selon type depense -->
+                  <div class="div-help_justifs" >
+                    <span><u>Justifications à fournir</u> :</span><br />
+                    <small class="help-justifs" data-justifsFot="6254-1" >
+                      - justificatif de mise à disposition gratuite par la mairie ou copie de délibération le prévoyant <br />
+                      - ou facture de location de la salle ou facture globale des consommations (restaurant ou bar) et justificatifs de paiement  <br />
+                      - ou si une permanence électorale a été déclarée en (6132), le lieu de l'événement et la permanence.
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6257" >
+                      - Facture des boissons et aliments servis et justificatifs paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6254-2" >
+                      - facture des éléments décoratifs et justifications paiement
+                      - Tous les éléments décoratifs et technique (signalétique, pupitres, affiches, décoration d'ambiance, sonorisation, rétroprojecteur... ) proviennent de stocks déclarés en (6135 ou 6051) ou été mis à disposition par un particulier ou un parti politique
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6237-1" >
+                      - facture et justificatifs de paiement <br />
+                      - le document a été réalisé en interne par un ou des membres de la campagne.<br />
+                      &nbsp;&nbsp; &bull; quels sont les membres bénévoles de la campagne qui ont participé à la conception<br />
+                      &nbsp;&nbsp; &bull; s'il y a des salariés déclarés, quel sont les membres salariés de la campagne qui ont participé à la conception
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6237-2" >
+                      - facture et justificatifs de paiement <br />
+                      - si des moyens généraux d'impression ont été déclarés: le document a été imprimé grâce aux moyens généreux de la campagne
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6260-1" >
+                      - la distribution a été réalisée par des bénévoles<br />
+                      - la distribution à été réalisée de manière onéreuse <br />
+                      &nbsp;&nbsp; &bull; la distribution a été assurée par un prestataire: facture et justificatifs de paiement <br />
+                      &nbsp;&nbsp; &bull; la distribution a été réalisée grâce à la participation d'un parti politique : identification du parti.<br />
+                      &nbsp;&nbsp; &bull; si des salariés ont été déclarés en (6211 ou 6210) : la distribution a été réalisée par les salariés de l'équipe
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6400" >
+                      - Identification des salariés et contrat de travail et fiches de paie et relevés de compte et si paiement ^par chèque, copie des chèques
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6135-1" >
+                      - Contrat de location et justificatifs de paiement sur la durée de la campagne
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6051" >
+                      - Facture d'achat et justificatifs de paiement et tableau d'amortissement pour valorisation sur la durée de la campagne.
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6135-2" >
+                      - Identification du donateur en nature et estimation de la valeur locative avec justification  <br />
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6060" >
+                      - justificatifs de paiement et fourchette
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6132" >
+                      - Contrat de bail, location ou sous-location et quittances et relevés bancaires
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6260-2" >
+                      - facture et justificatifs de paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6262-1" >
+                      - Remboursement  ligne du candidat: facture et justificatifs de remboursement <br/>
+                      - lignes campagne: facture et justificatifs de paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6230-1" >
+                      - conception réalisée en interne par des bénévoles: identification des bénévoles <br/>
+                      - si salariés déclarés en (6210, 6211 ou 6400); conception réalisée par les salariés de la compagne: identification des salariés <br/>
+                      - conception réalisée par un prestataire: facture et justificatifs de paiement<br/>
+                      - conception réalisée par u  parti politique: identification du parti
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6230-2" >
+                      - facture et justificatifs de paiement<br/>
+                      - hébergement gratuit: identification de la plateforme de l'hébergement gratuit, copie des conditions générales
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6226-2, 6230-3" >
+                      - contenu réalisé par des bénévoles: identifications des bénévoles <br />
+                      - contenu conçu par un conseil en communication professionnel: facture et justificatif de paiement<br />
+                      - si salariés déclarés en (6210, 6211 ou 6400); contenu conçu par les salariés de la compagne: identification des salariés
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6230-4" >
+                      - Diffusion TV payante
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6226-2,6226-3" >
+                      - facture et justificatifs de paiement<br/>
+                      - création réalisée par des bénévoles: identification des bénévoles <br/>
+                      - création réalisée par un parti politique: identification du parti <br/>
+                      - si salariés déclarés en (6210, 6211 ou 6400); création réalisée par les salariés de la compagne: identification des salariés
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6280-2" >
+                      - facture et justificatifs de paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6280-2" >
+                      - facture et justificatifs de paiement<br/>
+                      - Si une ou des lignes téléphoniques ont été déclarées dans les frais généraux en (6262): les lignes déclarées en frais généraux ont été utilisées
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6226-4" >
+                      - Prestataire: facture et justificatifs de paiement<br/>
+                      - bénévoles de la campagne: identification des bénévoles <br/>
+                      - si salariés déclarés en (6210, 6211 ou 6400): identification des salariés<br/>
+                      - personnels d'un partie politique
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6240-1" >
+                      - justificatifs du déplacement: date, les lieux de départ et d'arrivée, l'itinéraire, le nombre de kilomètres effectués, l'auteur et l'intérêt électoral du déplacement. <br/>
+                      &nbsp;&nbsp;&nbsp; si déplacement en véhicule personnel: une copie de la carte grise. <br/>
+                      &nbsp;&nbsp;&nbsp; si transport en commun: billet et justificatif de paiement.<br/>
+                      &nbsp;&nbsp;&nbsp; si déplacement en véhicule loué par la campagne: contrat de location (demander si location a été déclarée dans le compte 6135) et fourchettes d'essence et justificatifs de paiement
+                      <br/>
+                      - frais de restauration(6257), facture et justificatif de paiement et noms et fonction des participants au repas et justification intérêt électoral.
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6240-2" >
+                      - A l'occasion d'une action de campagne<br/>
+                      &nbsp;&nbsp; &bull; justificatifs du déplacement: date, les lieux de départ et d'arrivée, l'itinéraire, le nombre de kilomètres effectués, l'auteur et l'intérêt électoral du déplacement, fonction du militant. <br/>
+                      &nbsp;&nbsp;&nbsp; si déplacement en véhicule personnel: une copie de la carte grise. <br/>
+                      &nbsp;&nbsp;&nbsp; si transport en commun: billet et justificatif de paiement.<br/> si déplacement en véhicule loué par la campagne: contrat de location (demander si location a été déclarée dans le compte 6135) et fourchettes d'essence et justificatifs de paiement
+                      <br/>
+                      &nbsp;&nbsp; &bull; frais de restauration(6257) 16€ maximum/repas, facture et justificatif de paiement et liste des personnes participant au repas et leurs fonctions respectives.<br/>
+                      - A l'occasion de l'organisation par l'équipe d'un transport en commun vers meeting<br/>
+                      &nbsp;&nbsp; &bull; facture d'affrètement des bus ou train et justificatif de paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6540-3" >
+                      - Participation patronale aux frais de transports en commun pour se rendre sur le lieu de travail: contact de travail et fiches de paie et justificatif de paiement<br/>
+                      - Prise en charge ou remboursement des frais de déplacement hors du lieu de travail: contact de travail et fiches de paie et justificatif de paiement
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6280-1" >
+                      - tout document justifiant la dépense
+                    </small>
+                    <small class="help-justifs" data-justifsFot="6600" >
+                      - intérêts d'emprunt<br/>
+                      - Primes d'assurance<br/>
+                      - Frais de fonctionnement du compte unique
+                    </small>
+                  </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /form groupe -->
+          <div class="form-row" >
+            <input type="submit" value="Enregistrer" id="save-depense" name="save-depense" class="btn btn-primary" />
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Questions -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3>Questions</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div  id="questions"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
     //this.error = "Tentative d'authentification";
 
     this.authenticationService.login(this.model.email, this.model.password)
-      .subscribe(result => {
-        console.log('result '+result);
+      .subscribe(response => {
+        console.log('response login : '+response);
+
         let redirect = this.authenticationService.redirectUrl ? this.authenticationService.redirectUrl : '/admin';
 
         let navigationExtras: NavigationExtras = {
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
       );
 
   }
+
 
 
 }

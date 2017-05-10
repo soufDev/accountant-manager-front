@@ -50,7 +50,7 @@ export class AuthService {
   login(email: string, password: string): Observable<boolean> {
     return this.http.post(environment.api_url + 'auth/login/', {email: email, password: password})
       .map((response: Response) => {
-      // login successful if there's a jwt token in the response
+        // login successful if there's a jwt token in the response
         let token = response.json().token;
 
 
@@ -62,16 +62,6 @@ export class AuthService {
       }).catch(this.handelError);
   }
 
-  private extraDataLogout(res : Response) {
-    return res.status;
-  }
-  get_user(token) {
-
-    let options = new RequestOptions({headers: this.headers});
-    return this.http.get(environment.api_url+'auth/me/', options)
-      .map(this.extractData)
-      //.catch(this.handelError);
-  }
 
   private extractData(res: Response) {
     let body = res.json();
@@ -96,13 +86,15 @@ export class AuthService {
     let options = new RequestOptions({headers: this.header});
     return this.http.get(environment.api_url+'auth/me/', options)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(this.extractData)
       .catch(this.handleError)
   }
 
   logout() {
     // clear token remove user from local storage to log user out
-    localStorage.removeItem('currentUser')
+    localStorage.removeItem('user');
+    localStorage.removeItem('profile');
+    localStorage.removeItem('currentUser');
   }
 
   private handleError(error: any): Promise<any> {
@@ -135,7 +127,6 @@ export class AuthService {
        //'Accept': 'application/pdf'
     });
 
-    let options = new RequestOptions({ headers: headers });
     return this.http.get('http://localhost:8000/media/files/contrat.pdf', {responseType: ResponseContentType.Blob})
       .map( (response) => {
           return new Blob([response.blob()], {type: 'application/pdf'})
@@ -163,4 +154,14 @@ export class AuthService {
       .catch(this.handelError)
   }
 
+  // get profile after login
+  getProfile(id): Observable<any> {
+    this.headers.set('Authorization', 'JWT '+this.token);
+    let options = new RequestOptions({headers: this.headers});
+    return this.http.get(environment.api_url+'users/profile/'+id, options)
+      .map(response => {
+          return response.json()
+      })
+      .catch(this.handelError)
+  }
 }

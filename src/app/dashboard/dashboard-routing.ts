@@ -5,6 +5,8 @@ import {AuthGuard} from '../guards/auth/auth.guard';
 import {AuthService} from '../services/auth.services';
 import {MailboxComponent} from "./content/mailbox/mailbox.component";
 import {AddRepresentativeComponent} from "./content/add-representative/add-representative.component";
+import {CandidateGuard} from "../guards/profile/candidate.guard";
+import {RepresentativeGuard} from "../guards/profile/representative.guard";
 
 const adminRoutes: Routes = [
   {
@@ -14,23 +16,28 @@ const adminRoutes: Routes = [
     children: [
       {
         path: 'depenses',
-        loadChildren: 'app/dashboard/content/depenses/depenses.module#DepensesModule'
+        loadChildren: 'app/dashboard/content/depenses/depenses.module#DepensesModule',
+        canActivate: [RepresentativeGuard]
       },
       {
         path: 'recettes',
-        loadChildren: 'app/dashboard/content/recettes/recettes.module#RecettesModule'
+        loadChildren: 'app/dashboard/content/recettes/recettes.module#RecettesModule',
+        canActivate: [RepresentativeGuard]
       },
       {
         path: 'donators',
-        loadChildren: 'app/dashboard/content/donator/donator.module#DonatorModule'
+        loadChildren: 'app/dashboard/content/donator/donator.module#DonatorModule',
+        canActivate: [RepresentativeGuard]
       },
       {
         path: 'mailbox',
-        component: MailboxComponent
+        component: MailboxComponent,
+        canActivate: [RepresentativeGuard]
       },
       {
         path: 'representative',
-        component: AddRepresentativeComponent
+        component: AddRepresentativeComponent,
+        canActivate: [CandidateGuard]
       },
     ]
   },

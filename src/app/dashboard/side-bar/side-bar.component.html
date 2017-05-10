@@ -50,7 +50,7 @@
             </span>
         </a>
       </li>
-      <li class="treeview">
+      <li class="treeview" *ngIf="profile === 'Candidat'">
         <a href="#">
           <i class="fa fa-clipboard"></i>
           <span>Compte campagne</span>
@@ -73,7 +73,7 @@
           <li><a [routerLink]="['./donators/add']"><i class="fa fa-circle-o"></i>Ajouter</a></li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="profile === 'Candidat'">
         <a [routerLink]="['./representative']"><i class="fa fa-user-circle-o"></i> <span>Ajouter un Mandataire</span>
         </a>
       </li>

@@ -5,6 +5,7 @@ import {DetailDepenseComponent} from "./detail-depense/detail-depense.component"
 import {EditDepenseComponent} from "./edit-depense/edit-depense.component";
 import {AddDepenseComponent} from "./add-depense/add-depense.component";
 import {ListDepensesComponent} from "./list-depenses/list-depenses.component";
+import {RepresentativeGuard} from "../../../guards/profile/representative.guard";
 
 const depensesRoutes: Routes = [
   {
@@ -14,6 +15,7 @@ const depensesRoutes: Routes = [
       {
         path: 'detail/:id',
         component: DetailDepenseComponent,
+
       },
       {
         path: 'edit/:id',

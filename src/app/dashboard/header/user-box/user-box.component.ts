@@ -15,8 +15,13 @@ export class UserBoxComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.getUser();
-    console.log(this.user)
+    let user_local  = localStorage.getItem('userItem');
+    if (user_local) {
+      this.user = JSON.parse(localStorage.getItem('userInfo')).user;
+    }else {
+      this.getUser();
+    }
+    //console.log(this.user)
   }
 
   getUser(): void {

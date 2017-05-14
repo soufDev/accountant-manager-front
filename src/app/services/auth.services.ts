@@ -92,7 +92,7 @@ export class AuthService {
 
   logout() {
     // clear token remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.removeItem('userInfo');
     localStorage.removeItem('profile');
     localStorage.removeItem('currentUser');
   }
@@ -127,10 +127,9 @@ export class AuthService {
        //'Accept': 'application/pdf'
     });
 
-    return this.http.get('http://localhost:8000/media/files/contrat.pdf', {responseType: ResponseContentType.Blob})
+    return this.http.get(environment.api_url+'media/files/contrat.pdf', {responseType: ResponseContentType.Blob})
       .map( (response) => {
           return new Blob([response.blob()], {type: 'application/pdf'})
-
         }
       )
       .catch(this.handelError)
@@ -158,10 +157,10 @@ export class AuthService {
   getProfile(id): Observable<any> {
     this.headers.set('Authorization', 'JWT '+this.token);
     let options = new RequestOptions({headers: this.headers});
-    return this.http.get(environment.api_url+'users/profile/'+id, options)
-      .map(response => {
-          return response.json()
-      })
+    return this.http.get(environment.api_url+'users/profile/'+id+'/', options)
+      .map(this.extractData)
       .catch(this.handelError)
   }
+
+
 }

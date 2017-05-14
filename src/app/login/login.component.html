@@ -30,7 +30,7 @@
       </div>
     </form>
 
-    <a href="#" class="text-center">Mot de passe oublié ?</a>
+    <a [routerLink]="['password-reset']" class="text-center">Mot de passe oublié ?</a>
 
     <div class="social-auth-links text-center">
       <p>- OU -</p>
@@ -40,7 +40,6 @@
     </div>
     <!--.social-auth-links -->
     <a class="text-center" [routerLink]="['/register']">S'enregister en tant que Candidat</a>
-
   </div>
   <!-- /.login-box-body -->
 </div>

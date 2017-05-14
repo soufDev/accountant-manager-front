@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
   user: User = new User();
   constructor(
     private authenticateService: AuthService,
-    router: Router) { }
+    router: Router) {
+  }
 
   ngOnInit() {
     this.getUserInfo();
@@ -29,8 +30,8 @@ export class DashboardComponent implements OnInit {
         response => {
           localStorage.setItem('userInfo', JSON.stringify({'user': user}));
           localStorage.setItem('profile', JSON.stringify({'profile': response}));
-          console.log('response profile', response.id)
-        }, error => console.log('error profile', error)
+          console.log('response profile dashboard', response.id)
+        }, error => console.log('error profile dashboard', error)
       )
     }, error => console.log('error get user info: '+error))
   }
@@ -39,8 +40,9 @@ export class DashboardComponent implements OnInit {
   getProfile(id) {
     this.authenticateService.getProfile(id).subscribe(
       response => {
-        console.log('response profile', response.id)
-      }, error => console.log('error profile', error)
+
+        console.log('response profile dashboard', response.id)
+      }, error => console.log('error profile dashboard', error)
     )
   }
 }

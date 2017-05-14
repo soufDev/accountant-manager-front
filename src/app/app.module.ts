@@ -13,14 +13,21 @@ import {ActivateService} from './services/activate.service';
 import {ActivateComponent} from './activate/activate.component';
 import { ProfileRegisterComponent } from './profile-register/profile-register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {LoginComponent} from './login/login.component';
+import { ResetPasswordConfirmComponent } from './reset-password-confirm/reset-password-confirm.component';
+import {PasswordForgotService} from './services/password-forgot.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     RegisterComponent,
     ActivateComponent,
     ProfileRegisterComponent,
     NotFoundComponent,
+    ForgotPasswordComponent,
+    ResetPasswordConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AuthService,
     UserService,
     ActivateService,
+    PasswordForgotService,
   ],
   bootstrap: [AppComponent]
 })

@@ -19,7 +19,6 @@ import {CollaboratorGuard} from "../guards/profile/collaborator.guard";
   imports: [
     CommonModule,
     DashboardRoutingModule,
-
   ],
   declarations: [
     DashboardComponent,

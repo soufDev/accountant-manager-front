@@ -15,7 +15,7 @@ const appRoutes: Routes = [
 
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'activate/:id/:token',
@@ -24,12 +24,10 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    //canLoad: [LoginGuard]
   },
   {
     path: 'password-reset',
     component: ForgotPasswordComponent,
-    //canLoad: [LoginGuard]
   },
   {
     path: 'password/reset/confirm/:uid/:token',
